@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+  <div>
+    <h2>Calculo de Salario</h2>
+<form #clienteform="ngForm" (ngSubmit)="suma(sueldobruto)" [hidden]="!visita">
+    <div>
+        <label for="Sueldo">Sueldo</label>
+        <input type="number" id="Sueldo" required [(ngModel)]="sueldobruto" name="Sueldo" #Sueldo="ngModel" step=".01">
+        <div class="danger" [hidden]="Sueldo.valid || Sueldo.pristine">
+            Sueldo es requerido
+        </div>
+        <div class="danger" [hidden]="sueldobruto>0">
+          Numero Negativo o 0
+      </div>
+    </div>
+    <button type="submit" class="button"
+    [disabled]="!clienteform.form.valid || sueldobruto<=0 || sueldobruto==null">Submit</button>
+</form>
+</div>
+<div [hidden]="sueldobruto<=0 || sueldobruto==null || visita">
+<table class="tabla">
+  <tr><th>Sueldo Bruto</th>
+  <td>$ {{sueldobruto}}</td></tr>
+  <tr><th>AFP</th>
+  <td>$ {{afp}}</td></tr>
+  <tr><th>ISSS</th>
+  <td>$ {{isss}}</td></tr>
+  <tr><th>Renta</th>
+  <td>$ {{renta}}</td></tr>
+  <tr><th>Sueldo Neto</th>
+    <td>$ {{sueldoneto}}</td></tr>
+</table>
+<button type="submit" class="button2" (click)="cambio()">Volver</button>
+</div>
+</body>
+</html>

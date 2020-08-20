@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <div class="header">
+        <h1>Conversion Gasolina</h1>
+        <p>Ingrese los datos solicitados para realizar la conversion</p>
+    </div>
+    <label>Galones:</label>
+    <input type="number" [(ngModel)]="valorgas" (change)="capturar()" step=".05" min="0.05" max="150">
+    <label>Tipo de Gasolina:</label>
+    <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+        <option *ngFor="let g of gaso" value="{{g}}">
+            {{g}}
+        </option>
+    </select>
+    <label>A pagar $:</label>
+    <input type="number" [(ngModel)]="valorconversion" readonly>
+    
+</body>
+</html>
