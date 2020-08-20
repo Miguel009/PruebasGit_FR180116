@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <div class="header">
+        <h1>Conversion de Longitud</h1>
+        <p>Ingrese los datos solicitados para realizar la conversion</p>
+    </div>
+    <label>Valor:</label>
+    <input type="text" [(ngModel)]="valorcm">
+    <label>Longitud:</label>
+    <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+        <option value="Selecciona">Selecciona</option>
+        <option *ngFor="let u of unidades" value="{{u}}">
+            {{u}}
+        </option>
+    </select>
+    <label [hidden]="opcionSeleccionado=='Selecciona'">Su valor en {{opcionSeleccionado}} es: {{valorconversion}}</label>
+</body>
+</html>
