@@ -29,10 +29,10 @@ export class AppComponent{
     
     switch (this.opcionSeleccionado) {
       case 'Regular':
-        this.valorconversion=Math.round(this.valorgas*4.25*100)/100 ;
+        this.valorconversion=Math.round(this.valorgas*4.05*100)/100 ;
         break;
       case 'Especial':
-        this.valorconversion=Math.round(this.valorgas*4.05*100)/100;
+        this.valorconversion=Math.round(this.valorgas*4.25*100)/100;
         break;
       case 'Diesel':
         this.valorconversion = Math.round(this.valorgas*3.96*100)/100;    
