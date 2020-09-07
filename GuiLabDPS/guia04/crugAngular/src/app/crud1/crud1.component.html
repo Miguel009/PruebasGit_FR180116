@@ -29,30 +29,51 @@
         <h3>{{selectedAlumno.id == 0 ? "Agregar Nuevo Alumno" : "Actualizar Alumno"}}</h3>
     </div>
     <div class="form-group">
-    <input type="text" [(ngModel)]="selectedAlumno.name" placeholder="name"
+    <input type="text" [(ngModel)]="selectedAlumno.name" placeholder="name" #name="ngModel"
+    class="form-control" pattern="[A-Za-zñáéíóúÁÉÍÓÚ ]+" required>
+    <div [hidden]="name.valid || name.pristine"  class="alert alert-danger">
+        Nombres validos es requerido
+    </div>
+    </div>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="selectedAlumno.lastname" placeholder="lastname"  #lastname="ngModel" pattern="[A-Za-zñáéíóúÁÉÍÓÚ ]+"
+    class="form-control" required>
+    <div [hidden]="lastname.valid || lastname.pristine"  class="alert alert-danger">
+        Apellidos validos es requerido
+    </div>
+    </div>
+    <div class="form-group">
+    <input type="number" [(ngModel)]="selectedAlumno.age" placeholder="age" #age="ngModel" required
     class="form-control">
+    <div [hidden]="age.valid || age.pristine"  class="alert alert-danger">
+        edad valida es requerida
+    </div>
+    <div class="alert alert-danger" [hidden]="selectedAlumno.age>=0">
+        Numero Negativo
+    </div>
     </div>
     <div class="form-group">
-    <input type="text" [(ngModel)]="selectedAlumno.lastname" placeholder="lastname"
-    class="form-control">
-    </div>
-    <div class="form-group">
-    <input type="number" [(ngModel)]="selectedAlumno.age" placeholder="age"
-    class="form-control">
-    </div>
-    <div class="form-group">
-        <input type="text" [(ngModel)]="selectedAlumno.address" placeholder="direccion"
+        <input type="text" [(ngModel)]="selectedAlumno.address" placeholder="direccion" pattern="[A-Za-zñáéíóúÁÉÍÓÚ ]+" required #adress="ngModel"
         class="form-control">
+        <div [hidden]="adress.valid || adress.pristine"  class="alert alert-danger">
+            Direccion valida requerida
+        </div>
     </div>
     <div class="form-group">
-        <input type="text" [(ngModel)]="selectedAlumno.phone" placeholder="telefono"
+        <input type="text" [(ngModel)]="selectedAlumno.phone" placeholder="telefono" required pattern="[0-9]{8}" #phone="ngModel"
         class="form-control">
+        <div [hidden]="phone.valid || phone.pristine"  class="alert alert-danger">
+            Telefono valido requerido formato 00000000
+        </div>
     </div>
     <div class="form-group">
-        <input type="text" [(ngModel)]="selectedAlumno.email" placeholder="correo"
+        <input type="email" [(ngModel)]="selectedAlumno.email" placeholder="correo" required #email="ngModel" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
         class="form-control">
+        <div [hidden]="email.valid || email.pristine"  class="alert alert-danger">
+            Correo valido requerido
+        </div>
     </div>
-    <button (click)="addOrEdit()" class="btn btn-primary btn-space">
+    <button (click)="addOrEdit()" class="btn btn-primary btn-space" [disabled]="!name.valid || name.pristine || !lastname.valid || lastname.pristine || !age.valid || age.pristine || selectedAlumno.age<0 || !adress.valid || adress.pristine || !phone.valid || phone.pristine || !email.valid || email.pristine">
     Guardar
     </button>
     <button *ngIf="selectedAlumno.id !== 0" class="btn btn-danger" (click)="delete()">

@@ -11,6 +11,8 @@
     <th>Codigo</th>
     <th>Descripcion</th>
     <th>Precio</th>
+    <th>Proveedor</th>
+    <th>Fabricante</th>
     <th>Borrar</th>
     <th>Seleccionar</th>
     </tr>
@@ -20,7 +22,9 @@
     <tr *ngFor="let art of articulos">
     <td>{{art.codigo}}</td>
     <td>{{art.descripcion}}</td>
-<td>{{art.precio}}</td>
+    <td>{{art.precio}}</td>
+    <td>{{art.proveedor}}</td>
+    <td>{{art.fabricante}}</td>
 <td><button (click)="baja(art.codigo)" class="btn btn-danger">Borrar</button></td>
 <td><button  (click)="seleccionar(art.codigo)" class="btn btn-warning">Seleccionar</button></td>
 
@@ -33,17 +37,38 @@
 </ng-template>
 <div>
 <div class="form-group">
-<input type="text" [(ngModel)]="art.descripcion" placeho
-lder="descripcion"
+<input type="text" [(ngModel)]="art.descripcion" placeholder="descripcion" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ ]+" required #des="ngModel"
 class="form-control" />
+<div [hidden]="des.valid || des.pristine"  class="alert alert-danger">
+    descripcion es requerido
+</div>
 </div>
 <div class="form-group">
-<input type="number" [(ngModel)]="art.precio" placeholde
-r="precio" class="form-control" />
+<input type="number" [(ngModel)]="art.precio" placeholder="precio" class="form-control" required #price="ngModel" />
+<div [hidden]="price.valid || price.pristine"  class="alert alert-danger">
+    Precio valido es requerido
 </div>
-<button (click)="alta()" *ngIf="art.codigo == 0"
+<div class="alert alert-danger" [hidden]="art.precio>=0">
+    Numero Negativo
+</div>
+</div>
+<div class="form-group">
+    <input type="text" [(ngModel)]="art.proveedor" placeholder="proveedor" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ ]+" required #prove="ngModel"
+    class="form-control" />
+    <div [hidden]="prove.valid || prove.pristine"  class="alert alert-danger">
+        Proveedor valido es requerido
+    </div>
+</div>
+<div class="form-group">
+    <input type="text" [(ngModel)]="art.fabricante" placeholder="fabricante" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ ]+" required #fabri="ngModel"
+    class="form-control" />
+    <div [hidden]="fabri.valid || fabri.pristine"  class="alert alert-danger">
+        Fabricante valido es requerido
+    </div>
+</div>
+<button (click)="alta()" *ngIf="art.codigo == 0" [disabled]="!fabri.valid || fabri.pristine || !prove.valid || prove.pristine ||  !price.valid || price.pristine || !des.valid || des.pristine || art.precio<0"
 class="btn btn-primary btn-space">Agregar</button>
-<button (click)="modificacion()" *ngIf="art.codigo !== 0"
+<button (click)="modificacion()" *ngIf="art.codigo !== 0" [disabled]="!fabri.valid || fabri.pristine || !prove.valid || prove.pristine ||  !price.valid || price.pristine || !des.valid || des.pristine || art.precio<0"
 class="btn btn-warning">Modificar</button>
 </div>
 </div>

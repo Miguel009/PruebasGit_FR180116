@@ -19,7 +19,9 @@ export class Crud2Component implements OnInit {
     this.art ={
       codigo:0,
       descripcion: null,
-      precio: 0
+      precio: 0,
+      proveedor: null, 
+      fabricante:null
     };
   }
 
