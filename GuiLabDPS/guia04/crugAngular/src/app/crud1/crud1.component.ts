@@ -24,17 +24,22 @@ export class Crud1Component implements OnInit {
   }
 
   addOrEdit():void{
-    if (this.selectedAlumno.id==0) {
-      this.selectedAlumno.id=this.alumnoArray.length+1;
-      this.alumnoArray.push(this.selectedAlumno);
+    if (this.selectedAlumno.name.trim()=="" || this.selectedAlumno.lastname.trim()=="" || this.selectedAlumno.age==null || this.selectedAlumno.address.trim()=="" || this.selectedAlumno.phone=="" || this.selectedAlumno.email.trim()=="") {
+      alert("revise que no haya datos vacios");
+    } else {
+
+      if (this.selectedAlumno.id==0) {
+        this.selectedAlumno.id=this.alumnoArray.length+1;
+        this.alumnoArray.push(this.selectedAlumno);
+      }
+      this.selectedAlumno = {id:0, name:'', lastname:'', age:0, address: '', phone:'', email:''}
     }
-    this.selectedAlumno = {id:0, name:'', lastname:'', age:0, address: "", phone:"", email:""}
   }
 
   delete():void{
     if (confirm('¿Esta seguro de eliminar el Registro?')) {
       this.alumnoArray=this.alumnoArray.filter(x=>x!=this.selectedAlumno);
-      this.selectedAlumno = {id:0, name:'', lastname:'', age:0, address: "", phone:"", email:""}
+      this.selectedAlumno = {id:0, name:'', lastname:'', age:0, address: '', phone:'', email:''}
     }
   }
 

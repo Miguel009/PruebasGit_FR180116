@@ -30,15 +30,25 @@ export class Crud2Component implements OnInit {
   }
 
   alta(){
+    if (this.art.descripcion.trim()=="" || this.art.proveedor.trim()=="" || this.art.fabricante.trim()=="") {
+      alert("revise que no haya datos vacios");
+    } else {
     console.log("carga");
     this.articulosServicio.alta(this.art).subscribe(datos => {
       if(datos['resultado']=='OK')
       {
         alert(datos['mensaje']);
         this.recuperarTodos();
-        this.art = {codigo: 0, descripcion: null, precio: null}
+        this.art ={
+          codigo:0,
+          descripcion: null,
+          precio: 0,
+          proveedor: null, 
+          fabricante:null
+        };
       }
     });
+  }
   }
 
   baja(codigo){
@@ -56,15 +66,25 @@ export class Crud2Component implements OnInit {
   }
 
   modificacion(){
+    if (this.art.descripcion.trim()=="" || this.art.proveedor.trim()=="" || this.art.fabricante.trim()=="") {
+      alert("revise que no haya datos vacios");
+    } else {
     this.articulosServicio.modificacion(this.art).subscribe(
       datos=>{
         if (datos['resultado']=='OK') {
           alert(datos['mensaje']);
           this.recuperarTodos();
-          this.art = {codigo: 0, descripcion: null, precio: null}
+          this.art ={
+            codigo:0,
+            descripcion: null,
+            precio: 0,
+            proveedor: null, 
+            fabricante:null
+          };
         }
       }
     )
+    }
   }
   seleccionar(codigo) {
     this.articulosServicio.seleccionar(codigo).subscribe(result => this.art = result

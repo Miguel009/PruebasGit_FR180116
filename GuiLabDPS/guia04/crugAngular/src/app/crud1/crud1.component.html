@@ -53,7 +53,7 @@
     </div>
     </div>
     <div class="form-group">
-        <input type="text" [(ngModel)]="selectedAlumno.address" placeholder="direccion" pattern="[A-Za-zñáéíóúÁÉÍÓÚ ]+" required #adress="ngModel"
+        <input type="text" [(ngModel)]="selectedAlumno.address" placeholder="direccion" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ,# ]+" required #adress="ngModel"
         class="form-control">
         <div [hidden]="adress.valid || adress.pristine"  class="alert alert-danger">
             Direccion valida requerida
@@ -73,7 +73,7 @@
             Correo valido requerido
         </div>
     </div>
-    <button (click)="addOrEdit()" class="btn btn-primary btn-space" [disabled]="!name.valid || name.pristine || !lastname.valid || lastname.pristine || !age.valid || age.pristine || selectedAlumno.age<0 || !adress.valid || adress.pristine || !phone.valid || phone.pristine || !email.valid || email.pristine">
+    <button (click)="addOrEdit()" class="btn btn-primary btn-space" [disabled]="!name.valid || !lastname.valid || !age.valid || selectedAlumno.age<0 || !adress.valid || !phone.valid || !email.valid">
     Guardar
     </button>
     <button *ngIf="selectedAlumno.id !== 0" class="btn btn-danger" (click)="delete()">
