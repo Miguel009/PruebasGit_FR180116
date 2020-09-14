@@ -18,13 +18,17 @@ import {ProductService} from './services/product.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import { from } from 'rxjs';
+import { StudentsComponent } from './components/students/students.component';
 
+import {StudentsService} from './services/students.service'
+import { Students } from './models/students';
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     ProductListComponent,
-    ProductComponent
+    ProductComponent,
+    StudentsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { from } from 'rxjs';
     BrowserAnimationsModule
   ],
   providers: [
-
+      StudentsService,
       ProductService
   ],
   bootstrap: [AppComponent]

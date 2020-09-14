@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+    <div class="col-md-8 mt-4">
+    <ul class="list-group">
+        <table class="table table-sm table-hover">
+            <tbody>
+                <tr *ngFor="let alumno of studentlist">
+                    <td>{{alumno.$key}}</td>              
+                    <td>{{alumno.name}}</td>
+                    <td>{{alumno.lastname}}</td>
+                    <td>{{alumno.age}}</td>
+                    <td>
+                        <a class="btn btn-secondary text-white" (click)="onEdit(alumno)">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger text-white" (click)="onDelete(alumno.$key)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ul>
+    <div class="card">
+    <div class="card-body">
+    <div class="card-title">
+        <h3>CRUD ALUMNOS</h3>
+    </div>
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+
+        <!-- TO UPDATE -->
+        <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="studentService.selectedStudent.$key">
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" #name="ngModel"
+                [(ngModel)]="studentService.selectedStudent.name" placeholder="Add A Product">
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="lastname" #lastname="ngModel"
+                [(ngModel)]="studentService.selectedStudent.lastname" placeholder="Add A Category">
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="age" #age="ngModel"
+                [(ngModel)]="studentService.selectedStudent.age" placeholder="Add A Location">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-plus-circle"></i> Add A Product
+            </button>
+            <button class="btn btn-secondary" type="reset" (click)="resetForm(productForm)">
+                <i class="fas fa-sync-alt"></i> Reset
+            </button>
+        </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <img width="300" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciI
+    HZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuO
+    SA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBma
+    WxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzM
+    HoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxM
+    S43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwL
+    jl6IiAvPgogIDwvc3ZnPg==">
+    </div>
+    </div>
+    </div>
