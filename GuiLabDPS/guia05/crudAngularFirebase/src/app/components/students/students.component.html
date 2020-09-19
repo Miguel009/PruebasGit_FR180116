@@ -33,17 +33,17 @@
 
         <div class="form-group">
             <input type="text" class="form-control" name="name" #name="ngModel"
-                [(ngModel)]="studentService.selectedStudent.name" placeholder="Add A Product">
+                [(ngModel)]="studentService.selectedStudent.name" placeholder="Add A Name">
         </div>
 
         <div class="form-group">
             <input type="text" class="form-control" name="lastname" #lastname="ngModel"
-                [(ngModel)]="studentService.selectedStudent.lastname" placeholder="Add A Category">
+                [(ngModel)]="studentService.selectedStudent.lastname" placeholder="Add A Lastname">
         </div>
 
         <div class="form-group">
-            <input type="text" class="form-control" name="age" #age="ngModel"
-                [(ngModel)]="studentService.selectedStudent.age" placeholder="Add A Location">
+            <input type="number" class="form-control" name="age" #age="ngModel"
+                [(ngModel)]="studentService.selectedStudent.age" placeholder="Add A age">
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">
