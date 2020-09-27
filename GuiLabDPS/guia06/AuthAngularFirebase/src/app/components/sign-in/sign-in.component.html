@@ -33,6 +33,7 @@
                     </div>
               
                     <br>
+                    <br>
   
                     <div class="form-group">
                       <span class="or"><span class="orInner left">Or</span></span>
@@ -40,26 +41,24 @@
   
                     <!-- Calling GoogleAuth Api from AuthService -->
                     <div class="form-group">
-                      <button type="button" class="btn btn-primary btn-lg float-left" (click)="authService.GoogleAuth()">
+                      <button type="button" class="btn btn-primary btn-lg" (click)="authService.GoogleAuth()">
                         <i class="fab fa-google-plus-g"></i>
                         Log in with Google
                       </button>
                     </div>
                   </div>
-                  <br>
                   <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-lg float-left" (click)="authService.FacebookAuth()">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="authService.FacebookAuth()">
                       <i class="fab fa-facebook"></i>
                       Log in with facebook
                     </button>
                   </div>
                   <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-lg float-left" (click)="authService.TwitterAuth()">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="authService.TwitterAuth()">
                       <i class="fab fa-twitter"></i>
                       Log in with Twitter
                     </button>
                   </div>
-                  <br>                       <br>                  <br>             <br>                  <br>
                   <div class="redirectToLogin">
                     <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
                   </div>
