@@ -1,11 +1,10 @@
-  
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import axios from 'axios';
 
-function App() {
-  const baseUrl="http://localhost:8080/apiPhpEscuela/";
+function Crud2() {
+  const baseUrl="http://34.123.48.65/apiPhpEscuela/";
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);
@@ -54,7 +53,6 @@ function App() {
     await axios.post(baseUrl, f)
     .then(response=>{
       setData(data.concat(response.data));
-      console.log(response.data);
       abrirCerrarModalInsertar();
     }).catch(error=>{
       console.log(error);
@@ -117,6 +115,7 @@ function App() {
           <th>ID</th>
           <th>Nombre</th>
           <th>Existencias</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -201,4 +200,4 @@ function App() {
   );
 }
 
-export default App;
+export default Crud2;

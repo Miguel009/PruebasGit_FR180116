@@ -1,11 +1,10 @@
-  
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import axios from 'axios';
 
-function App() {
-  const baseUrl="http://localhost:8080/apiPhpEscuela/";
+function Crud1() {
+  const baseUrl="http://34.123.48.65/apiPhpEscuela/";
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);
@@ -13,7 +12,8 @@ function App() {
   const [alumnoSeleccionado, setalumnoSeleccionado]=useState({
     id: '',
     nombre: '',
-    existencias: '',
+    apellido: '',
+    edad: ''
   });
 
   const handleChange=e=>{
@@ -38,7 +38,7 @@ function App() {
   }
 
   const peticionGet=async()=>{
-    await axios.get(baseUrl, {params: {METHOD: "GET1"}})
+    await axios.get(baseUrl, {params: {METHOD: "GET"}})
     .then(response=>{
       setData(response.data);
     }).catch(error=>{
@@ -49,12 +49,12 @@ function App() {
   const peticionPost=async()=>{
     var f = new FormData();
     f.append("nombre", alumnoSeleccionado.nombre);
-    f.append("existencias", alumnoSeleccionado.existencias);
-    f.append("METHOD", "POST1");
+    f.append("apellido", alumnoSeleccionado.apellido);
+    f.append("edad", alumnoSeleccionado.edad);
+    f.append("METHOD", "POST");
     await axios.post(baseUrl, f)
     .then(response=>{
       setData(data.concat(response.data));
-      console.log(response.data);
       abrirCerrarModalInsertar();
     }).catch(error=>{
       console.log(error);
@@ -64,15 +64,17 @@ function App() {
   const peticionPut=async()=>{
     var f = new FormData();
     f.append("nombre", alumnoSeleccionado.nombre);
-    f.append("existencias", alumnoSeleccionado.existencias);
-    f.append("METHOD", "PUT1");
+    f.append("apellido", alumnoSeleccionado.apellido);
+    f.append("edad", alumnoSeleccionado.edad);
+    f.append("METHOD", "PUT");
     await axios.post(baseUrl, f, {params: {id: alumnoSeleccionado.id}})
     .then(response=>{
       var dataNueva= data;
       dataNueva.map(alumno=>{
         if(alumno.id===alumnoSeleccionado.id){
           alumno.nombre=alumnoSeleccionado.nombre;
-          alumno.existencias=alumnoSeleccionado.existencias;
+          alumno.apellido=alumnoSeleccionado.apellido;
+          alumno.edad=alumnoSeleccionado.edad;
         }
       });
       setData(dataNueva);
@@ -84,7 +86,7 @@ function App() {
 
   const peticionDelete=async()=>{
     var f = new FormData();
-    f.append("METHOD", "DELETE1");
+    f.append("METHOD", "DELETE");
     await axios.post(baseUrl, f, {params: {id: alumnoSeleccionado.id}})
     .then(response=>{
       setData(data.filter(alumno=>alumno.id!==alumnoSeleccionado.id));
@@ -116,7 +118,9 @@ function App() {
         <tr>
           <th>ID</th>
           <th>Nombre</th>
-          <th>Existencias</th>
+          <th>apellido</th>
+          <th>edad</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -124,7 +128,8 @@ function App() {
           <tr key={alumno.id}>
             <td>{alumno.id}</td>
             <td>{alumno.nombre}</td>
-            <td>{alumno.existencias}</td>
+            <td>{alumno.apellido}</td>
+            <td>{alumno.edad}</td>
           <td>
           <button className="btn btn-primary" onClick={()=>seleccionarAlumno(alumno, "Editar")}>Editar</button> {"  "}
           <button className="btn btn-danger" onClick={()=>seleccionarAlumno(alumno, "Eliminar")}>Eliminar</button>
@@ -146,9 +151,13 @@ function App() {
           <br />
           <input type="text" className="form-control" name="nombre" onChange={handleChange}/>
           <br />
-          <label>Existencias: </label>
+          <label>apellido: </label>
           <br />
-          <input type="text" className="form-control" name="existencias" onChange={handleChange}/>
+          <input type="text" className="form-control" name="apellido" onChange={handleChange}/>
+          <br />
+          <label>edad: </label>
+          <br />
+          <input type="text" className="form-control" name="edad" onChange={handleChange}/>
           <br />
         </div>
       </ModalBody>
@@ -168,9 +177,13 @@ function App() {
           <br />
           <input type="text" className="form-control" name="nombre" onChange={handleChange} value={alumnoSeleccionado && alumnoSeleccionado.nombre}/>
           <br />
-          <label>Existencias: </label>
+          <label>apellido: </label>
           <br />
-          <input type="text" className="form-control" name="existencias" onChange={handleChange} value={alumnoSeleccionado && alumnoSeleccionado.existencias}/>
+          <input type="text" className="form-control" name="apellido" onChange={handleChange} value={alumnoSeleccionado && alumnoSeleccionado.apellido}/>
+          <br />
+          <label>edad: </label>
+          <br />
+          <input type="text" className="form-control" name="edad" onChange={handleChange} value={alumnoSeleccionado && alumnoSeleccionado.edad}/>
           <br />
         </div>
       </ModalBody>
@@ -201,4 +214,4 @@ function App() {
   );
 }
 
-export default App;
+export default Crud1;
